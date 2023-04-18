@@ -1,4 +1,16 @@
 const Tabs = (topics) => {
+  const container = document.createElement('div');
+  container.classList.add('topics');
+
+  for (const topic of topics) {
+    const tab = document.createElement('div');
+    tab.classList.add('tab');
+    tab.textContent = topic;
+    container.appendChild(tab);
+  }
+
+  return container;
+
   // TASK 3
   // ---------------------
   // Implement this function which takes an array of strings ("topics") as its only argument.
@@ -16,6 +28,17 @@ const Tabs = (topics) => {
 }
 
 const tabsAppender = (selector) => {
+
+
+    fetch('http://localhost:5001/api/topics')
+      .then(response => response.json())
+      .then(data => {
+        const topics = data.topics;
+        const tabs = Tabs(topics);
+        const container = document.querySelector(selector);
+        container.appendChild(tabs);
+      })
+      .catch(error => console.error(error));
   // TASK 4
   // ---------------------
   // Implement this function which takes a css selector as its only argument.

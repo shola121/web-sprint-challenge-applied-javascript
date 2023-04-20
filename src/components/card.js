@@ -1,3 +1,4 @@
+import axios from "axios"
 const Card = (article) => {
   
     const { headline, authorPhoto, authorName } = article;
@@ -55,15 +56,45 @@ const Card = (article) => {
 
 //const cardAppender = (selector) => {
   const cardAppender = async (selector) => {
-    const response = await fetch('http://localhost:5001/api/articles');
-    const articles = await response.json();
-  
     const container = document.querySelector(selector);
-    console.log(articles);
-    articles.forEach((article) => {
-      const card = Card(article);
-      container.appendChild(card);
-    });
+
+    //const response = await fetch('http://localhost:5001/api/articles');
+    //const articles = await response.json();
+    
+  axios.get(`http://localhost:5001/api/articles`)
+  .then((resp) => {
+  const js = resp.data.articles.javascript
+  const bt = resp.data.articles.bootstrap
+  const jq = resp.data.articles.jquery
+  const nodee = resp.data.articles.node
+  const techh = resp.data.articles.technology
+  js.forEach(article => {
+    container.append(Card(article))
+  })
+  bt.forEach(article => {
+    container.append(Card(article))
+  })
+  jq.forEach(article => {
+    container.append(Card(article))
+  })
+  nodee.forEach(article => {
+    container.append(Card(article))
+  })
+  techh.forEach(article => {
+    container.append(Card(article))
+  })
+
+
+})
+    //const javascript = articles.javascript
+    //articles.forEach(article => {
+      //articles[0][article].forEach(element => {
+      //const card = Card(articles);
+     // container.append(card);
+     // });
+ //   });
+
+    
   
   // TASK 6
   // ---------------------

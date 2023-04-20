@@ -1,4 +1,4 @@
-import { container } from "webpack"
+
 
 const Header = (title, date, temp) => {
 
@@ -40,12 +40,13 @@ const Header = (title, date, temp) => {
  
 const headerAppender = (selector) => {
           // get element property by css selector class name
-          const header = document.querySelector(header-container);
+          const element= document.querySelector(selector);
           // call Header function with parameters
-          const header_data=Header("This is the title","11/02/2022","This is temp variable content")
+          const header_data =  Header("This is the title","11/02/2022","This is temp variable content")
           // append child into selector element
-          console.log(header);
-          header.appendChild(header_data);
+          element.appendChild(header_data)
+          console.log(element);
+  
   // TASK 2
   // ---------------------
   // Implement this function taking a css selector as its only argument.
